@@ -102,3 +102,4 @@ Es eignet sich damit als Demonstrator für Technische Redaktion, XML-basierte Do
 ## Hinweise
 
 Die erzeugten Output-Ordner sind im Repository enthalten, damit der komplette Demonstrationsstand nachvollziehbar bleibt. Für produktive Projekte würde man generierte Outputs häufig nicht versionieren, sondern über Build- oder CI-Prozesse erzeugen lassen.
+
