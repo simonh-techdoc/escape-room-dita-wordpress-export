@@ -116,3 +116,4 @@ if __name__ == "__main__":
         fix_local_links()
         list_topics(hierarchy)
         print("\n===== FERTIG =====")
+

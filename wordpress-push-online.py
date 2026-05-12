@@ -214,3 +214,4 @@ if __name__ == "__main__":
         print(f"\n{len(topics)} Topics gefunden.")
         push_to_wordpress(topics)
         print("\n===== FERTIG =====")
+
