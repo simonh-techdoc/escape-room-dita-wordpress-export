@@ -179,4 +179,4 @@ Praktisches Begleitprojekt zur Vertiefung von:
 - DITA-OT-Build-Prozessen und Fehlerdiagnose
 - Single-Source-Publishing-Konzepten
 - Automatisierung von Dokumentationsprozessen
-- WordPress REST API
+- WordPress REST API 
