@@ -41,6 +41,25 @@ components/
 
 Die `main.ditamap` definiert die Reihenfolge und Publikationsstruktur der Topics. Die `keys.ditamap` enthält zentrale Variablen bzw. wiederverwendbare Werte, die über `keyref` in den Topics referenziert werden.
 
+## Informationsarchitektur
+
+Die Topic-Typen folgen dem DITA-Grundprinzip der funktionalen Trennung:
+Concept-Topics beschreiben **Was** – sie liefern Kontext und Überblick.
+Task-Topics beschreiben **Wie** – sie führen durch konkrete Handlungsschritte.
+Diese Trennung ist keine Konvention, sondern eine bewusste
+informationsarchitektonische Entscheidung: Sie ermöglicht gezielte
+Wiederverwendung einzelner Bausteine ohne inhaltliche Abhängigkeiten.
+
+Die `keys.ditamap` separiert variable Inhalte – Produktnamen, Zeitangaben –
+von der stabilen Dokumentationsstruktur. Eine Änderung am Key propagiert
+automatisch in alle Verwendungsstellen aller Ausgabeformate. Das ist
+Single Source of Truth auf Komponentenebene.
+
+Die Parent-Child-Hierarchie der DITA-Map wird im WordPress-Export als
+Seitenhierarchie abgebildet – Content-Struktur und Ausgabestruktur bleiben
+konsistent. Wer die Map verändert, verändert gleichzeitig die
+Navigationsstruktur der Website.
+
 ## Ausgabeformate
 
 Das Projekt enthält bereits erzeugte Beispieloutputs:
