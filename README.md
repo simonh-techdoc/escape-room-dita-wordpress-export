@@ -1,182 +1,104 @@
-# DITA-to-WordPress Publishing Workflow
+# DITA-Projekt „Escape Room“
 
-## Überblick
+Dieses Repository enthält ein exemplarisches DITA-Dokumentationsprojekt zum Thema **Escape Room**. Es demonstriert Topic-based Writing, Wiederverwendung über Keys und Single-Source-Publishing aus einer gemeinsamen XML-Quelle in mehrere Ausgabeformate.
 
-Automatisierter Publishing-Workflow der DITA-Quelldateien in einem
-einzigen Schritt zu HTML, PDF und WordPress-Pages verarbeitet.
-Entwickelt als Nebenprojekt zur IHK-Weiterbildung Technische Redaktion.
+Das Projekt ist als praxisnahes Lern- und Portfolio-Projekt für Technische Redaktion angelegt. Es zeigt, wie strukturierte Inhalte in DITA modelliert, mit DITA-OT verarbeitet und anschließend als HTML, PDF und WordPress-taugliche Ausgabe bereitgestellt werden können.
 
----
+## Projektziel
 
-## Projektstruktur
+Ziel des Projekts ist es, einen kleinen, aber vollständigen Dokumentationsworkflow abzubilden:
 
+- strukturierte Inhaltserstellung mit DITA-Topics
+- zentrale Steuerung über eine DITA-Map
+- Wiederverwendung variabler Inhalte über Keyrefs
+- automatische Ausgabe als HTML5 und PDF
+- Weiterverarbeitung des HTML-Outputs für WordPress
+
+Damit bildet das Projekt im kleinen Maßstab typische Konzepte moderner Component-Content-Management-Systeme ab: medienneutrale Quellen, modulare Topics, Single Source of Truth und automatisierte Publikation.
+
+## Inhaltliches Szenario
+
+Die Beispielinhalte beschreiben einen Escape-Room-Guide. Die Dokumentation richtet sich an Nutzerinnen und Nutzer, die verstehen möchten, wie das Angebot funktioniert und wie sie ein Team anmelden bzw. starten können.
+
+Die Inhalte sind bewusst überschaubar gehalten, damit die technische Struktur des DITA-Projekts gut nachvollziehbar bleibt.
+
+## DITA-Struktur
+
+```text
+maps/
+├── main.ditamap      # Hauptmap mit Publikationsstruktur
+└── keys.ditamap      # zentrale Key-Definitionen
+
+topics/
+├── overview.dita     # Überblick / Concept
+├── how-it-works.dita # Ablaufbeschreibung / Task
+└── cta.dita          # Handlungsaufforderung / Task
+
+components/
+├── team-info.dita    # wiederverwendbarer Inhaltsbaustein
+└── timing.dita       # wiederverwendbarer Inhaltsbaustein
 ```
-projektordner/
-├── maps/
-│   ├── main.ditamap          # Hauptmap mit Hierarchie
-│   └── keys.ditamap          # Key-Definitionen (Variablen)
-├── topics/
-│   ├── overview.dita         # Concept-Topic
-│   ├── how-it-works.dita     # Task-Topic
-│   └── cta.dita              # Task-Topic
-├── output-html/              # HTML5-Output (automatisch generiert)
-├── output-pdf/               # PDF-Output (automatisch generiert)
-├── output-wordpress/         # WordPress-Output (automatisch generiert)
-├── DITA-build-HTML+PDF.bat   # Build-Skript für HTML und PDF
-├── wordpress-push-online.py  # Publishing-Skript für WordPress (online)
-└── wordpress-push-offline.py # Publishing-Skript für lokale Ausgabe
+
+Die `main.ditamap` definiert die Reihenfolge und Publikationsstruktur der Topics. Die `keys.ditamap` enthält zentrale Variablen bzw. wiederverwendbare Werte, die über `keyref` in den Topics referenziert werden.
+
+## Ausgabeformate
+
+Das Projekt enthält bereits erzeugte Beispieloutputs:
+
+```text
+output-html/       # HTML5-Ausgabe aus DITA-OT
+output-pdf/        # PDF-Ausgabe aus DITA-OT
+output-wordpress/  # HTML-Ausgabe für WordPress-Weiterverarbeitung
 ```
 
----
+Die Outputs dienen als nachvollziehbarer Nachweis des Publishing-Prozesses. Die eigentliche Quelle bleiben jedoch die DITA-Dateien in `topics/`, `components/` und `maps/`.
 
-## Technischer Stack
+## Build-Prozess
 
-| Komponente | Technologie |
-|---|---|
-| Authoring-Format | DITA 1.3 (XML) |
-| Build-Engine | DITA-OT 4.4 |
-| Laufzeitumgebung | Java 17 (portabel) |
-| Ausgabeformate | HTML5, PDF, WordPress |
-| Automatisierung | Windows Batch, Python 3 |
-| WordPress-Anbindung | REST API v2 |
-| HTML-Verarbeitung | BeautifulSoup4 |
+Der Build wird über das Batch-Skript gestartet:
 
----
-
-## Workflow
-
-### 1. Authoring in DITA
-
-Inhalte werden in oXygen XML Editor oder Notepad++ als DITA-Topics
-erstellt – strikt nach Topic-Typen getrennt:
-
-- **Concept** – beschreibt Was (`<conbody>`)
-- **Task** – beschreibt Wie (`<steps>`, `<cmd>`)
-- **Reference** – tabellarische Referenzinformationen
-
-Variablen wie Produktnamen oder Zeitangaben werden als Keys in einer
-separaten `keys.ditamap` verwaltet und per `<ph keyref="..."/>` 
-eingebunden. Eine Änderung am Key aktualisiert automatisch alle
-Verwendungsstellen in allen Ausgabeformaten.
-
-### 2. Build: HTML und PDF
-
-```batch
+```bat
 DITA-build-HTML+PDF.bat
 ```
 
-Das Batch-Skript führt folgende Schritte aus:
+Das Skript erzeugt HTML- und PDF-Ausgaben aus der DITA-Map. Vorausgesetzt werden eine lokale DITA-OT-Installation und eine passende Java-Laufzeitumgebung gemäß Projektkonfiguration.
 
-1. Portables Java 17 aktivieren
-2. Output-Ordner bereinigen
-3. DITA-OT-Build HTML5
-4. DITA-OT-Build PDF
-5. Link-Korrektur per PowerShell
-6. Outputs automatisch öffnen
+## WordPress-Export
 
-Beide Outputs entstehen aus derselben DITA-Quelle – kein doppeltes
-Pflegen, keine Synchronisationsfehler.
+Zusätzlich enthält das Projekt zwei Python-Skripte für die WordPress-Ausgabe:
 
-### 3. Publishing: WordPress
-
-**Online (echter WordPress-Server):**
-
-```bash
-python wordpress-push-online.py
+```text
+wordpress-push-offline.py # lokale Bereinigung und Prüfung der WordPress-Ausgabe
+wordpress-push-online.py  # Push zu WordPress über REST API
 ```
 
-1. DITA-OT-Build HTML5
-2. Ditamap parsen → Parent-Child-Hierarchie ermitteln
-3. HTML-Dateien einlesen, DITA-CSS-Klassen entfernen
-4. Per WordPress REST API pushen:
-   - Slug-Abgleich: bestehende Seiten werden aktualisiert,
-     neue Seiten werden erstellt (keine Duplikate)
-   - Parent-Child-Beziehung aus Ditamap wird als
-     WordPress-Seitenhierarchie abgebildet
-   - Status: `draft` (manuelle Freigabe in WordPress)
+Das Online-Skript nutzt die WordPress REST API und arbeitet slug-basiert. Bestehende Seiten werden aktualisiert, neue Seiten werden angelegt. Die Hierarchie kann aus der DITA-Map abgeleitet und auf WordPress-Seiten übertragen werden.
 
-**Offline (lokale Ausgabe):**
+Die technische Dokumentation dieses Export-Workflows steht in der bestehenden `README.md`.
 
-```bash
-python wordpress-push-offline.py
-```
+## Technischer Kontext
 
-Gleicher Build-Prozess, aber ohne WordPress-Anbindung.
-CSS-Pfade werden auf absolute lokale Pfade korrigiert,
-Links werden gefixt. Hierarchie-Report wird ausgegeben.
+| Bereich | Umsetzung |
+|---|---|
+| Authoring | DITA 1.3 / XML |
+| Strukturierung | DITA-Map, Topics, Keyrefs |
+| Build | DITA Open Toolkit |
+| Ausgabe | HTML5, PDF, WordPress-HTML |
+| Automatisierung | Windows Batch, Python |
+| WordPress-Anbindung | REST API v2 |
 
----
+## Lern- und Demonstrationswert
 
-## Konfiguration
+Das Projekt zeigt insbesondere:
 
-### Batch-Skript
+- Trennung von Inhalt, Struktur und Ausgabe
+- konsequente modulare Dokumentation
+- medienneutrales Schreiben mit DITA
+- Automatisierung von Publishing-Prozessen
+- Übertragung strukturierter Technischer Dokumentation in ein Web-CMS
 
-Keine Anpassung nötig solange die Projektstruktur gleich bleibt.
-`MAP_FILE` wird automatisch aus dem Skript-Speicherort abgeleitet.
+Es eignet sich damit als Demonstrator für Technische Redaktion, XML-basierte Dokumentation, Single-Source-Publishing und einfache CCMS-nahe Workflows.
 
-### Python-Skripte
+## Hinweise
 
-Nur diese Werte anpassen:
-
-```python
-MAP_NAME    = "main.ditamap"    # Name der Ditamap
-MAPS_FOLDER = "maps"            # Unterordner der Ditamap
-```
-
-Für das Online-Skript zusätzlich:
-
-```python
-WP_URL      = "https://deine-wordpress-seite.de/wp-json/wp/v2"
-WP_USER     = "dein-benutzername"
-WP_PASSWORD = "dein-anwendungspasswort"
-```
-
-Das WordPress App-Passwort wird unter
-Benutzer → Profil → Anwendungspasswörter generiert.
-
----
-
-## Abhängigkeiten
-
-```bash
-pip install requests beautifulsoup4
-```
-
-Lokale DITA-OT-Installation unter `C:\DITA\dita-ot-4.4` und
-portables Java 17 unter `C:\DITA\java25` werden vorausgesetzt.
-
----
-
-## Konzeptioneller Hintergrund
-
-Der Workflow demonstriert Single-Source-Publishing in der Praxis:
-
-- **Eine Quelle** – DITA-Topics im XML-Format
-- **Drei Ausgaben** – PDF, HTML5, WordPress
-- **Automatisiert** – kein manueller Eingriff zwischen
-  Authoring und Publishing
-- **Versionierungssicher** – Slug-basierter Abgleich verhindert
-  Duplikate bei Reimport
-- **Hierarchietreu** – Parent-Child-Struktur aus der Ditamap
-  wird in WordPress-Seitenhierarchie überführt
-
-Dieses Prinzip – Content einmal erstellen, mehrfach und
-medienneutral ausgeben – ist die Kernlogik hinter modernen
-CCMS-Implementierungen mit Schema ST4, COSIMA oder vergleichbaren
-Systemen. Der Workflow bildet diese Logik auf einem kleineren
-Maßstab nach und macht sie praktisch erfahrbar.
-
----
-
-## Lernkontext
-
-Entwickelt im Rahmen der IHK-Weiterbildung
-**Technische/-r Redakteur/-in (IHK)** beim IBB Institut für
-Berufliche Bildung, Recklinghausen (Januar–September 2026).
-
-Praktisches Begleitprojekt zur Vertiefung von:
-- DITA-Strukturierung und Topic-based Writing
-- DITA-OT-Build-Prozessen und Fehlerdiagnose
-- Single-Source-Publishing-Konzepten
-- Automatisierung von Dokumentationsprozessen
-- WordPress REST API
+Die erzeugten Output-Ordner sind im Repository enthalten, damit der komplette Demonstrationsstand nachvollziehbar bleibt. Für produktive Projekte würde man generierte Outputs häufig nicht versionieren, sondern über Build- oder CI-Prozesse erzeugen lassen.
