@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="timing">
+
+  <title>Dauer</title>
+
+  <taskbody>
+    <steps>
+      <step id="timing-step">
+        <cmd><ph keyref="duration"/></cmd>
+      </step>
+    </steps>
+  </taskbody>
+
+</task>

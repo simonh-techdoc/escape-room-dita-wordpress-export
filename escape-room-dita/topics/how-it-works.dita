@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="how-it-works">
+
+  <title>So funktioniert es</title>
+
+  <taskbody>
+    <steps>
+
+      <step>
+        <cmd>2–6 Personen pro Team</cmd>
+      </step>
+
+      <step>
+        <cmd>60 Minuten Zeit</cmd>
+      </step>
+
+      <step>
+        <cmd>Rätsel lösen und Hinweise finden</cmd>
+      </step>
+
+      <step>
+        <cmd>Zusammenarbeit ist entscheidend</cmd>
+      </step>
+
+    </steps>
+  </taskbody>
+
+</task>

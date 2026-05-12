@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="cta">
+
+  <title>Bist du bereit?</title>
+
+  <taskbody>
+    <steps>
+
+      <step>
+        <cmd>Scanne den QR-Code</cmd>
+      </step>
+
+      <step>
+        <cmd>Starte dein Escape-Abenteuer</cmd>
+      </step>
+
+    </steps>
+  </taskbody>
+
+</task>

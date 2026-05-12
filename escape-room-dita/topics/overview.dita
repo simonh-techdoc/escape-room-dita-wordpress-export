@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="overview">
+
+  <title>Was erwartet dich?</title>
+
+  <shortdesc>
+    Tauche ein in <ph keyref="room-name"/> und erlebe ein spannendes Escape-Abenteuer.
+  </shortdesc>
+
+  <conbody>
+    <p>
+      Löse Rätsel, finde Hinweise und arbeite im Team, um den Raum rechtzeitig zu verlassen.
+    </p>
+
+    <p>
+      Erfahre <xref href="how-it-works.dita">wie es funktioniert</xref>
+      oder starte direkt mit der
+      <xref href="cta.dita">Buchung</xref>.
+    </p>
+
+  </conbody>
+</concept>

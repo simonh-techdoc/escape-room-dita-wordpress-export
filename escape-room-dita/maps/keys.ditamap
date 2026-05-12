@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+
+  <keydef keys="room-name">
+    <topicmeta>
+     <keywords>
+        <keyword>Raum 13</keyword>
+      </keywords>
+    </topicmeta>
+  </keydef>
+
+  <keydef keys="duration">
+    <topicmeta>
+      <keywords>
+        <keyword>60 Minuten</keyword>
+      </keywords>
+    </topicmeta>
+  </keydef>
+
+</map>
